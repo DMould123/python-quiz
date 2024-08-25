@@ -1,3 +1,5 @@
+import random
+
 def football_quiz():
     questions = [
         {
@@ -51,6 +53,8 @@ def football_quiz():
             "answer": "C"
         }
     ]
+
+    random.shuffle(questions)
 
     score = 0
 

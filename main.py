@@ -1,6 +1,18 @@
 import random
 
+def load_high_score():
+    try:
+        with open("high_score.txt", "r") as file:
+            return int(file.read())
+    except FileNotFoundError:
+        return 0
+
+def save_high_score(score):
+    with open("high_score.txt", "w") as file:
+        file.write(str(score))
+
 def football_quiz():
+    high_score = load_high_score()
     questions = [
         {
             "question": "Which country has won the most FIFA World Cup titles?",
@@ -71,6 +83,11 @@ def football_quiz():
             print(f"Wrong! The correct answer was {q['answer']}.")
 
     print(f"\nQuiz completed! Your final score is {score}/{len(questions)}")
+    if score > high_score:
+        print(f"New high score! Previous high score was {high_score}.")
+        save_high_score(score)
+    else:
+        print(f"Your high score is {high_score}. Keep trying!")
 
 if __name__ == "__main__":
     football_quiz()

@@ -74,7 +74,14 @@ def football_quiz():
         print(f"\nQuestion {i+1}: {q['question']}")
         for option in q['options']:
             print(option)
-        answer = input("Your answer (A, B, C, or D): ").upper()
+
+        # Input validation loop
+        while True:
+            answer = input("Your answer (A, B, C, or D): ").upper()
+            if answer in ['A', 'B', 'C', 'D']:
+                break
+            else:
+                print("Invalid answer. Please enter A, B, C, or D.")
 
         if answer == q['answer']:
             print("Correct!")

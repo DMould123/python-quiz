@@ -1,4 +1,5 @@
 import random
+import time
 
 def load_high_score():
     try:
@@ -68,26 +69,38 @@ def football_quiz():
 
     random.shuffle(questions)
 
+    print("Welcome to the Football Quiz!")
+    print("You have 10 seconds to answer each question.")
+    print("Please only respond with A, B, C, or D.")
+
     score = 0
 
     for i, q in enumerate(questions):
         print(f"\nQuestion {i+1}: {q['question']}")
         for option in q['options']:
             print(option)
+        print("You have 10 seconds to answer.")
 
-        # Input validation loop
+        start_time = time.time()
+
+        # Input validation loop with timer
         while True:
             answer = input("Your answer (A, B, C, or D): ").upper()
+            elapsed_time = time.time() - start_time
+
+            if elapsed_time > 10:  # 10-second limit per question
+                print("Time's up! You didn't answer in time.")
+                break
+
             if answer in ['A', 'B', 'C', 'D']:
+                if answer == q['answer']:
+                    print("Correct!")
+                    score += 1
+                else:
+                    print(f"Wrong! The correct answer was {q['answer']}.")
                 break
             else:
-                print("Invalid answer. Please enter A, B, C, or D.")
-
-        if answer == q['answer']:
-            print("Correct!")
-            score += 1
-        else:
-            print(f"Wrong! The correct answer was {q['answer']}.")
+                print("Invalid input. Please enter A, B, C, or D.")
 
     print(f"\nQuiz completed! Your final score is {score}/{len(questions)}")
     if score > high_score:

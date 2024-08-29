@@ -72,6 +72,7 @@ def football_quiz():
     print("Welcome to the Football Quiz!")
     print("You have 10 seconds to answer each question.")
     print("Please only respond with A, B, C, or D.")
+    print("\n" + "-"*40)  # Divider line
 
     score = 0
 
@@ -102,7 +103,11 @@ def football_quiz():
             else:
                 print("Invalid input. Please enter A, B, C, or D.")
 
+        print("\n" + "-"*40)  # Divider line between questions
+
     print(f"\nQuiz completed! Your final score is {score}/{len(questions)}")
+    print("\n" + "-"*40)  # Divider line before final message
+
     if score > high_score:
         print(f"New high score! Previous high score was {high_score}.")
         save_high_score(score)

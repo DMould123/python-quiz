@@ -77,7 +77,7 @@ def football_quiz():
     score = 0
 
     for i, q in enumerate(questions):
-        print(f"\nQuestion {i+1}: {q['question']}")
+        print(f"\nQuestion {i+1}/{len(questions)}: {q['question']}")  # Progress indicator added
         for option in q['options']:
             print(option)
         print("You have 10 seconds to answer.")

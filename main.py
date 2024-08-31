@@ -105,7 +105,7 @@ def football_quiz():
 
         print("\n" + "-"*40)  # Divider line between questions
 
-    print(f"\nQuiz completed! Your final score is {score}/{len(questions)}")
+    print(f"\nQuiz completed! Great job! Your final score is {score}/{len(questions)}")
     print("\n" + "-"*40)  # Divider line before final message
 
     if score > high_score:

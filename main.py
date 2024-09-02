@@ -12,6 +12,30 @@ def save_high_score(score):
     with open("high_score.txt", "w") as file:
         file.write(str(score))
 
+def main_menu():
+    print("Welcome to the Football Quiz!")
+    print("\n" + "-"*40)
+    print("1. Start Quiz")
+    print("2. View High Score")
+    print("3. Exit")
+    print("-"*40)
+
+    while True:
+        choice = input("Please select an option (1-3): ")
+
+        if choice == '1':
+            football_quiz()
+            break
+        elif choice == '2':
+            high_score = load_high_score()
+            print(f"\nThe current high score is: {high_score}")
+            print("-"*40)
+        elif choice == '3':
+            print("Thank you for playing! Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please select 1, 2, or 3.")
+
 def football_quiz():
     high_score = load_high_score()
     questions = [
@@ -69,15 +93,14 @@ def football_quiz():
 
     random.shuffle(questions)
 
-    print("Welcome to the Football Quiz!")
-    print("You have 10 seconds to answer each question.")
+    print("\nYou have 10 seconds to answer each question.")
     print("Please only respond with A, B, C, or D.")
-    print("\n" + "-"*40)  # Divider line
+    print("\n" + "-"*40)
 
     score = 0
 
     for i, q in enumerate(questions):
-        print(f"\nQuestion {i+1}/{len(questions)}: {q['question']}")  # Progress indicator added
+        print(f"\nQuestion {i+1}/{len(questions)}: {q['question']}")
         for option in q['options']:
             print(option)
         print("You have 10 seconds to answer.")
@@ -103,10 +126,10 @@ def football_quiz():
             else:
                 print("Invalid input. Please enter A, B, C, or D.")
 
-        print("\n" + "-"*40)  # Divider line between questions
+        print("\n" + "-"*40)
 
-    print(f"\nQuiz completed! Great job! Your final score is {score}/{len(questions)}")
-    print("\n" + "-"*40)  # Divider line before final message
+    print(f"\nQuiz completed! Your final score is {score}/{len(questions)}")
+    print("\n" + "-"*40)
 
     if score > high_score:
         print(f"New high score! Previous high score was {high_score}.")
@@ -115,4 +138,4 @@ def football_quiz():
         print(f"Your high score is {high_score}. Keep trying!")
 
 if __name__ == "__main__":
-    football_quiz()
+    main_menu()

@@ -128,14 +128,14 @@ def football_quiz():
 
         print("\n" + "-"*40)
 
-    print(f"\nQuiz completed! Your final score is {score}/{len(questions)}")
+    print(f"\nQuiz complete! Your final score is {score}/{len(questions)} Well Done!")
     print("\n" + "-"*40)
 
     if score > high_score:
         print(f"New high score! Previous high score was {high_score}.")
         save_high_score(score)
     else:
-        print(f"Your high score is {high_score}. Keep trying!")
+        print(f"Your score is {high_score}. Keep trying to beat that high score!")
 
 if __name__ == "__main__":
     main_menu()

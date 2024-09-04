@@ -88,6 +88,31 @@ def football_quiz():
             "question": "Which club is known as 'The Red Devils'?",
             "options": ["A) Liverpool", "B) Arsenal", "C) Manchester United", "D) Bayern Munich"],
             "answer": "C"
+        },
+        {
+            "question": "Which player holds the record for the most goals scored in a single FIFA World Cup tournament?",
+            "options": ["A) Miroslav Klose", "B) Just Fontaine", "C) Pelé", "D) Gerd Müller"],
+            "answer": "B"
+        },
+        {
+            "question": "Which club did Thierry Henry return to in 2012 after playing for Barcelona?",
+            "options": ["A) Arsenal", "B) New York Red Bulls", "C) Monaco", "D) Juventus"],
+            "answer": "A"
+        },
+        {
+            "question": "Who won the Golden Boot at the 2018 FIFA World Cup?",
+            "options": ["A) Harry Kane", "B) Antoine Griezmann", "C) Kylian Mbappé", "D) Luka Modrić"],
+            "answer": "A"
+        },
+        {
+            "question": "Which football club is nicknamed 'The Old Lady'?",
+            "options": ["A) Real Madrid", "B) Bayern Munich", "C) Juventus", "D) Inter Milan"],
+            "answer": "C"
+        },
+        {
+            "question": "Who is the youngest player to score in a World Cup final?",
+            "options": ["A) Lionel Messi", "B) Pelé", "C) Kylian Mbappé", "D) Ronaldo Nazário"],
+            "answer": "B"
         }
     ]
 

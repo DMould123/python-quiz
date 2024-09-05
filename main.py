@@ -16,8 +16,8 @@ def main_menu():
     print("Welcome to the Football Quiz!")
     print("\n" + "-"*40)
     print("1. Start Quiz")
-    print("2. View High Score")
-    print("3. Exit")
+    print("2. View Highest Score")
+    print("3. Exit Quizscreen")
     print("-"*40)
 
     while True:

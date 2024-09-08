@@ -134,7 +134,7 @@ def football_quiz():
 
         # Input validation loop with timer
         while True:
-            answer = input("Your answer (A, B, C, or D): ").upper()
+            answer = input("Your answer (A, B, C, or D): ").strip().upper()
             elapsed_time = time.time() - start_time
 
             if elapsed_time > 10:  # 10-second limit per question

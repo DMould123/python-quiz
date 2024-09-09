@@ -12,6 +12,20 @@ def save_high_score(score):
     with open("high_score.txt", "w") as file:
         file.write(str(score))
 
+def shuffle_options(question):
+    options = question['options']
+    correct_answer = question['answer']
+
+    # Create a list of tuples pairing option letter with the actual answer text
+    option_pairs = list(zip(['A', 'B', 'C', 'D'], options))
+
+    # Shuffle the options
+    random.shuffle(option_pairs)
+
+    # Update the options and correct answer key based on new shuffled order
+    question['options'] = [pair[1] for pair in option_pairs]
+    question['answer'] = [pair[0] for pair in option_pairs if pair[1][0] == correct_answer][0]
+
 def main_menu():
     print("Welcome to the Football Quiz!")
     print("\n" + "-"*40)
@@ -117,6 +131,10 @@ def football_quiz():
     ]
 
     random.shuffle(questions)
+
+    # Shuffle options for each question
+    for question in questions:
+        shuffle_options(question)
 
     print("\nYou have 10 seconds to answer each question.")
     print("Please only respond with A, B, C, or D.")

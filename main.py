@@ -12,6 +12,36 @@ def save_high_score(score):
     with open("high_score.txt", "w") as file:
         file.write(str(score))
 
+def load_leaderboard():
+    try:
+        with open("leaderboard.txt", "r") as file:
+            leaderboard = [line.strip().split(":") for line in file.readlines()]
+            return sorted(leaderboard, key=lambda x: int(x[1]), reverse=True)  # Sort by score (descending)
+    except FileNotFoundError:
+        return []
+
+def save_leaderboard(leaderboard):
+    with open("leaderboard.txt", "w") as file:
+        for name, score in leaderboard:
+            file.write(f"{name}:{score}\n")
+
+def update_leaderboard(player_name, new_score):
+    leaderboard = load_leaderboard()
+    leaderboard.append([player_name, str(new_score)])
+    leaderboard = sorted(leaderboard, key=lambda x: int(x[1]), reverse=True)[:5]  # Keep top 5 scores
+    save_leaderboard(leaderboard)
+
+def display_leaderboard():
+    leaderboard = load_leaderboard()
+    if leaderboard:
+        print("\nLeaderboard - Top 5 Players")
+        print("-" * 40)
+        for i, (name, score) in enumerate(leaderboard, start=1):
+            print(f"{i}. {name} - {score}")
+        print("-" * 40)
+    else:
+        print("\nNo scores on the leaderboard yet.")
+
 def shuffle_options(question):
     options = question['options']
     correct_answer = question['answer']
@@ -31,26 +61,30 @@ def main_menu():
     print("\n" + "-"*40)
     print("1. Start Quiz")
     print("2. View Highest Score")
-    print("3. Exit Quizscreen")
+    print("3. View Leaderboard")
+    print("4. Exit Quizscreen")
     print("-"*40)
 
     while True:
-        choice = input("Please select an option (1-3): ")
+        choice = input("Please select an option (1-4): ")
 
         if choice == '1':
-            football_quiz()
+            player_name = input("Enter your name: ").strip()
+            football_quiz(player_name)
             break
         elif choice == '2':
             high_score = load_high_score()
             print(f"\nThe current high score is: {high_score}")
             print("-"*40)
         elif choice == '3':
+            display_leaderboard()  # Display leaderboard
+        elif choice == '4':
             print("Thank you for playing! Goodbye!")
             break
         else:
-            print("Invalid choice. Please select 1, 2, or 3.")
+            print("Invalid choice. Please select 1, 2, 3, or 4.")
 
-def football_quiz():
+def football_quiz(player_name):
     high_score = load_high_score()
     questions = [
         {
@@ -177,8 +211,9 @@ def football_quiz():
     if score > high_score:
         print(f"New high score! Previous high score was {high_score}.")
         save_high_score(score)
-    else:
-        print(f"Your score is {high_score}. Keep trying to beat that high score!")
+
+    # Update leaderboard with player name and score
+    update_leaderboard(player_name, score)
 
 if __name__ == "__main__":
     main_menu()

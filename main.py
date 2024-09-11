@@ -57,21 +57,20 @@ def shuffle_options(question):
     question['answer'] = [pair[0] for pair in option_pairs if pair[1][0] == correct_answer][0]
 
 def main_menu():
-    print("Welcome to the Football Quiz!")
-    print("\n" + "-"*40)
-    print("1. Start Quiz")
-    print("2. View Highest Score")
-    print("3. View Leaderboard")
-    print("4. Exit Quizscreen")
-    print("-"*40)
-
     while True:
+        print("Welcome to the Football Quiz!")
+        print("\n" + "-"*40)
+        print("1. Start Quiz")
+        print("2. View Highest Score")
+        print("3. View Leaderboard")
+        print("4. Exit Quizscreen")
+        print("-"*40)
+
         choice = input("Please select an option (1-4): ")
 
         if choice == '1':
             player_name = input("Enter your name: ").strip()
             football_quiz(player_name)
-            break
         elif choice == '2':
             high_score = load_high_score()
             print(f"\nThe current high score is: {high_score}")
@@ -208,12 +207,23 @@ def football_quiz(player_name):
     print(f"\nQuiz complete! Your final score is {score}/{len(questions)} Well Done!")
     print("\n" + "-"*40)
 
-    if score > high_score:
-        print(f"New high score! Previous high score was {high_score}.")
+    if score > load_high_score():
+        print(f"New high score! Previous high score was {load_high_score()}.")
         save_high_score(score)
 
     # Update leaderboard with player name and score
     update_leaderboard(player_name, score)
+
+    # Ask if player wants to play again
+    while True:
+        replay = input("Do you want to play again? (yes/no): ").strip().lower()
+        if replay == 'yes':
+            football_quiz(player_name)
+            break
+        elif replay == 'no':
+            break
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.")
 
 if __name__ == "__main__":
     main_menu()

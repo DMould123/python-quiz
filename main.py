@@ -216,14 +216,15 @@ def football_quiz(player_name):
 
     # Ask if player wants to play again
     while True:
-        replay = input("Do you want to play again? (yes/no): ").strip().lower()
-        if replay == 'yes':
+        replay = input("Do you want to play again? (y/n): ").strip().lower()
+        if replay == 'y':
             football_quiz(player_name)
             break
-        elif replay == 'no':
+        elif replay == 'n':
             break
         else:
-            print("Invalid input. Please enter 'yes' or 'no'.")
+            print("Invalid input. Please enter 'y' or 'n'.")
 
 if __name__ == "__main__":
     main_menu()
+1
